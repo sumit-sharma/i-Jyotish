@@ -17,3 +17,5 @@ class UserViewSet(ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class CustomerViewSet(viewsets.ModelViewSet):
+    pass
