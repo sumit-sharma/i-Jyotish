@@ -40,5 +40,6 @@ from accounts.views import UserViewSet
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api-auth/', include('rest_framework.urls'))
-    path('api/users/', UserViewSet.as_view(), name='users')
+    # path('api/users/', UserViewSet.as_view(), name='users'),
+    path('api/', include('api.urls')),
 ]
