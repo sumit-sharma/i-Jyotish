@@ -7,7 +7,11 @@ from .serializers import CategorySerializer
 
 # Create your views here.
 
-class ListCategory(generics.ListAPIView):
+class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+
+class CategoryDetail(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
