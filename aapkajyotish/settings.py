@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts',
     'api.apps.ApiConfig',
     'categories.apps.CategoriesConfig',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
