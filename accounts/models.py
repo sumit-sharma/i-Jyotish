@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from categories.models import Category
+
 # Create your models here.
 
 
@@ -15,3 +17,14 @@ class User(AbstractUser):
 
     class Meta:
         db_table = "users"
+
+
+class CategoryUser(models.Model):
+    user = models.ForeignKey(User, related_name="user_id", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name="category_id",  on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table = "category_user"
+        
+        

@@ -19,5 +19,7 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     class Meta:
-        db_table = 'categories'    
+        db_table = 'categories'
+        verbose_name_plural = "Categories"
+
     
