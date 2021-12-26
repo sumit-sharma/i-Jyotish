@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'accounts',
     'api.apps.ApiConfig',
     'categories.apps.CategoriesConfig',
-    'drf_yasg'
+    'drf_yasg',
+    'followers'
 ]
 
 MIDDLEWARE = [

@@ -33,5 +33,5 @@ urlpatterns = [
     path('astrologer/', AstrologerList.as_view(), name='astrologers.list'),
     path('astrologer/<int:pk>/', AstrologerListDetail.as_view()),
 
-
+    path('follower/', include('followers.urls')),   
 ]
