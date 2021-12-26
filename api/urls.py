@@ -1,5 +1,5 @@
 from django.urls import path, include
-
+from accounts.views import login_view
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -23,6 +23,10 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    path('login/', login_view, name='login'),
+    
+    # path('user-data/')
+    
     path('category/', include('categories.urls')),
 
     # swagger and redoc documentation

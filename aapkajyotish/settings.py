@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'categories.apps.CategoriesConfig',
     'drf_yasg',
-    'followers'
+    'followers',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -159,5 +160,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 15
+    'PAGE_SIZE': 15,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+      'rest_framework.authentication.TokenAuthentication'  
+    ],
 }

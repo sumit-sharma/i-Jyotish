@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-User = get_user_model()
 
 # Create your models here.
 
+User = get_user_model()
 
 class UserFollowing(models.Model):
     user = models.ForeignKey(User, related_name="followed_user_id", on_delete=models.CASCADE)
