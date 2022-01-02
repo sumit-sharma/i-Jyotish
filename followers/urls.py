@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import CreateFollower
+from .views import create_follower
 
 urlpatterns = [
-    path('create', CreateFollower.as_view()),
+    path('create', create_follower, name='follow_user'),
     # path('<int:pk>/detail/', CategoryDetail.as_view()),
 ]
 

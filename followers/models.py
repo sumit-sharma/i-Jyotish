@@ -20,9 +20,9 @@ class UserFollowing(models.Model):
     class Meta:
         db_table = 'followers'
         verbose_name_plural = "followers"
-        # constraints = [
-        #     models.UniqueConstraint(fields=['user_id','following_user_id'],  name="unique_followers")
-        # ]
+        constraints = [
+            models.UniqueConstraint(fields=['user_id','following_user_id'],  name="unique_followers")
+        ]
         ordering = ["-created_at"]
 
     

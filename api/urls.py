@@ -1,6 +1,7 @@
 from django.urls import path, include
-from accounts.views import login_view
+from accounts.views import login_view, get_user_data
 from rest_framework import permissions
+from rest_framework.authtoken.views import obtain_auth_token
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -23,7 +24,12 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('login/', login_view, name='login'),
+    path('login', login_view, name='login'),
+
+    # path('verify-mobile-otp/', )
+
+
+    path('user-data', get_user_data),
     
     # path('user-data/')
     
@@ -37,5 +43,6 @@ urlpatterns = [
     path('astrologer/', AstrologerList.as_view(), name='astrologers.list'),
     path('astrologer/<int:pk>/', AstrologerListDetail.as_view()),
 
-    path('follower/', include('followers.urls')),   
+    path('follower/', include('followers.urls')),
+    
 ]
