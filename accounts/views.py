@@ -5,7 +5,12 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.serializers import Serializer
 from .models import User
-from .serializers import AstrologerSerializer, UserSerializer, TokenSerializer
+from .serializers import (
+    AstrologerSerializer,
+    UserSerializer,
+    TokenSerializer,
+    RegisterUserSerializer,
+)
 from rest_framework import generics, status
 from rest_framework.generics import ListAPIView
 from drf_yasg.utils import swagger_auto_schema
@@ -60,13 +65,31 @@ def login_view(request):
                     data = {"token": token.key, "user_id": user.id, "created": created}
                     stat = status.HTTP_200_OK
                 else:
-                    data = {"msg": "user has been blocked by admin", 'data':{}}
+                    data = {"msg": "user has been blocked by admin", "data": {}}
                     stat = status.HTTP_422_UNPROCESSABLE_ENTITY
         except User.DoesNotExist:
-                data = {"msg": "user not found", 'data':{}}
-                stat = status.HTTP_422_UNPROCESSABLE_ENTITY
+            data = {"msg": "user not found", "data": {}}
+            stat = status.HTTP_422_UNPROCESSABLE_ENTITY
 
         return Response(data, stat)
+
+
+@swagger_auto_schema(
+    method="POST", request_body=RegisterUserSerializer, responses={201: UserSerializer}
+)
+@api_view(["POST"])
+def register_view(request):
+    try:
+        user_name = request.data.get("country_code") + request.data.get("mobile_no")
+        request.data["username"] = user_name
+        userData = request.data
+        serializer = UserSerializer(data=userData)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            # TODO: send otp
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        raise e
 
 
 @api_view(["POST"])

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from accounts.views import login_view, get_user_data
+from accounts.views import login_view, get_user_data, register_view
 from rest_framework import permissions
 from rest_framework.authtoken.views import obtain_auth_token
 from drf_yasg.views import get_schema_view
@@ -24,7 +24,9 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('login', login_view, name='login'),
+    path('login/', login_view, name='login'),
+    
+    path('register/', register_view, name='register'),
 
     # path('verify-mobile-otp/', )
 

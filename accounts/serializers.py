@@ -1,12 +1,21 @@
 from .models import User
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
+from rest_framework.validators import UniqueValidator, UniqueTogetherValidator
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'email_verified_at', 'country_code', 'mobile_no', 'phone_verified_at')
+        validators = [
+            # UniqueValidator(queryset=User.objects.all())
+            UniqueTogetherValidator(queryset=User.objects.all(),fields=('country_code','mobile_no'), message="This mobile number already exists.")
+        ]
         
+class RegisterUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'country_code', 'mobile_no')
         
 
 class AstrologerSerializer(serializers.ModelSerializer):
